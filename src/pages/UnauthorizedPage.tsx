@@ -31,6 +31,12 @@ const UnauthorizedPage: FC = () => {
         variant="contained"
         color="primary"
         onClick={handleGoToLogin}
+        sx={{
+          background: 'linear-gradient(to right, #3f51b5, #2196f3)',
+          '&:hover': {
+            background: 'linear-gradient(to right, #303f9f, #1976d2)',
+          },
+        }}
       >
         Go to Login
       </Button>

@@ -56,10 +56,25 @@ const LoginPage: FC = () => {
         login() // Update auth context
         navigate('/welcome') // Redirect to welcome page
       } else {
-        setError('Invalid credentials') // Handle invalid credentials
+        // Handle specific status codes or error messages from the server
+        if (response.status === 401) {
+          setError('Unauthorized: Incorrect username or password') // Handle unauthorized access
+        } else {
+          setError('Invalid credentials') // Generic error for other statuses
+        }
       }
     } catch (err) {
-      setError('Error occurred while logging in') // Handle errors
+      // Handle network or server errors
+      if (axios.isAxiosError(err) && err.response) {
+        const status = err.response.status
+        if (status === 401) {
+          setError('Unauthorized: Incorrect username or password') // Handle unauthorized access
+        } else {
+          setError('Invalid credentials') // Generic error for other statuses
+        }
+      } else {
+        setError('Error occurred while logging in') // Handle errors without a response
+      }
     }
   }
 

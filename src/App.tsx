@@ -40,6 +40,11 @@ function App() {
             path="/unauthorized"
             element={<UnauthorizedPage />}
           />
+          {/* Catch-all route for unspecified paths */}
+          <Route
+            path="*"
+            element={<Navigate to="/unauthorized" />}
+          />
         </Routes>
       </AuthProvider>
     </Router>
