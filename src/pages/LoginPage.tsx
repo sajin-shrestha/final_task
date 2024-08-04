@@ -30,28 +30,10 @@ const LoginPage: FC = () => {
     }
 
     /* try-2 */
-    // try {
-    //   // Sending credentials to the API
-    //   const response = await axios.post('https://login.dataconstruct.com.np/', {
-    //     Username: username,
-    //     Password: password,
-    //   })
-
-    //   // Check if the credentials are correct
-    //   if (username === 'username' && password === 'password') {
-    //     login() // Call login function from UseAuth
-    //     navigate('/welcome') // Redirect to /welcome on successful login
-    //   } else {
-    //     setError('Invalid credentials') // Display error if credentials are incorrect
-    //   }
-    // } catch (err) {
-    //   setError('Error occurred while logging in') // Display generic error message
-    // }
-
-    /* try-1 */
     try {
+      // Sending credentials to the API
       const response = await axios.post(
-        'https://login.dataconstruct.com.np/login',
+        'https://cors-anywhere.herokuapp.com/https://login.dataconstruct.com.np/login', // Using CORS proxy
         {
           username, // Sending credentials
           password,
@@ -73,6 +55,32 @@ const LoginPage: FC = () => {
     } catch (err) {
       setError('Error occurred while logging in') // Display generic error message
     }
+
+    /* try-1 */
+    // try {
+    //   const response = await axios.post(
+    //     'https://login.dataconstruct.com.np/login',
+    //     {
+    //       username, // Sending credentials
+    //       password,
+    //     },
+    //     {
+    //       headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
+    //     },
+    //   )
+
+    //   // Check if the response message is 'Login successful'
+    //   if (response.data.message === 'Login successful') {
+    //     // Store the token if needed (e.g., in localStorage or context)
+    //     localStorage.setItem('authToken', response.data.token)
+    //     login() // Call login function from UseAuth
+    //     navigate('/welcome') // Redirect to /welcome (welcome-page) on successful login
+    //   } else {
+    //     setError('Invalid credentials') // Display error if input-credentials are incorrect
+    //   }
+    // } catch (err) {
+    //   setError('Error occurred while logging in') // Display generic error message
+    // }
   }
 
   const handleClickShowPassword = () => {

@@ -9,13 +9,13 @@ export default defineConfig({
 // import react from '@vitejs/plugin-react'
 // import { defineConfig } from 'vite'
 
-// // https://vitejs.dev/config/
+// https://vitejs.dev/config/
 // export default defineConfig({
 //   plugins: [react()],
 //   server: {
 //     proxy: {
 //       '/api': {
-//         target: 'https://login.dataconstruct.com.np',
+//         target: 'https://login.dataconstruct.com.np/login',
 //         changeOrigin: true,
 //         rewrite: (path) => path.replace(/^\/api/, ''),
 //       },
