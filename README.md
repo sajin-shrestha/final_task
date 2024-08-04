@@ -43,8 +43,8 @@ This project is a simple React login page built with TypeScript. It validates us
 - **Routing**: Utilizes `react-router-dom` for navigation between pages.
 - **State Management**: Uses React Context API for managing authentication state.
 - **Styling**: Styled with Material-UI for a modern and responsive design.
-- **CORS Handling**: Uses Vite proxy configuration to handle CORS errors during API requests.
-- **Local storage and Token**: uses local-storage to allow a user to retain access welcome page until the token expires
+- **CORS Handling**: Uses Vite proxy configuration to `handle CORS-errors` during API requests.
+- **Local storage and Token**: uses `local-storage` to allow a user to retain access `/welcome` until the token expires
 
 ## Built With
 
