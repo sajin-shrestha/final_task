@@ -7,43 +7,49 @@ import {
   useState,
 } from 'react'
 
-// Define the shape of the context
+// Define the shape of the authentication context
 interface AuthContextType {
-  isLoggedIn: boolean
-  login: () => void
-  logout: () => void
+  isLoggedIn: boolean // Indicates whether the user is logged in
+  login: () => void // Function to log in the user
+  logout: () => void // Function to log out the user
 }
 
-// Create a Context with undefined initial value
+// Create a Context with an initial value of undefined
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
+// AuthProvider component that provides authentication context to its children
 export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  // State to track if the user is logged in
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  // Check localStorage or any other storage to initialize login state
+  // Effect to initialize login state based on token in localStorage
   useEffect(() => {
+    // Retrieve the authentication token from localStorage
     const token = localStorage.getItem('authToken')
+    // If token exists, set the user as logged in
     if (token) {
       setIsLoggedIn(true)
     }
   }, [])
 
-  // Login function
+  // Function to log in the user
   const login = () => {
     setIsLoggedIn(true)
-    // Store token if needed
+    // Retrieve the authentication token (for logging in or other purposes)
     const token = localStorage.getItem('authToken')
     if (!token) {
       console.error('No token found for login')
     }
   }
 
-  // Logout function
+  // Function to log out the user
   const logout = () => {
     setIsLoggedIn(false)
-    localStorage.removeItem('authToken') // Remove token on logout
+    // Remove the authentication token from localStorage
+    localStorage.removeItem('authToken')
   }
 
+  // Provide the authentication state and functions to child components
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
       {children}
@@ -51,9 +57,11 @@ export const AuthProvider: FC<{ children: ReactNode }> = ({ children }) => {
   )
 }
 
-// Custom hook for using AuthContext
+// Custom hook for accessing the authentication context
 export const UseAuth = () => {
+  // Get the context value
   const context = useContext(AuthContext)
+  // Ensure the context is used within an AuthProvider
   if (!context) {
     throw new Error('useAuth must be used within an AuthProvider')
   }

@@ -16,14 +16,17 @@ function App() {
     <Router>
       <AuthProvider>
         <Routes>
+          {/* Redirect root path to the login page */}
           <Route
             path="/"
             element={<Navigate to="/login" />}
           />
+          {/* Route for the login page */}
           <Route
             path="/login"
             element={<LoginPage />}
           />
+          {/* Protected route for the welcome page */}
           <Route
             path="/welcome"
             element={
@@ -32,9 +35,10 @@ function App() {
               </PrivateRoute>
             }
           />
+          {/* Route for unauthorized access page */}
           <Route
             path="/unauthorized"
-            element={<UnauthorizedPage />} // Route for UnauthorizedPage
+            element={<UnauthorizedPage />}
           />
         </Routes>
       </AuthProvider>

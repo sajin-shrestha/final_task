@@ -15,74 +15,55 @@ import { useNavigate } from 'react-router-dom'
 import { UseAuth } from '../helpers/AuthContext'
 
 const LoginPage: FC = () => {
+  // State for managing input values and errors
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
+
+  // Hook for navigation
   const navigate = useNavigate()
+  // Destructure login function from AuthContext
   const { login } = UseAuth()
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    // Basic validation for empty fields
     if (!username || !password) {
       setError('Username and Password cannot be empty')
       return
     }
 
-    /* try-2 */
     try {
+      // Make POST request to the proxy API endpoint
       const response = await axios.post(
-        '/api/login', // Using CORS proxy
+        '/api/login', // Proxy API endpoint (/api -> https://login.dataconstruct.com.np)
         {
-          username, // Sending credentials
+          username, // Credentials to be sent
           password,
         },
         {
-          headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
+          headers: { 'Content-Type': 'application/json' }, // Ensure JSON payload
         },
       )
 
-      // Check if the response message is 'Login successful'
-      // if (response.data.message === 'Login successful') {
+      // Check if login was successful
       if (response.status === 200) {
-        // Store the token if needed (e.g., in localStorage or context)
+        // Store the token and update authentication state
         localStorage.setItem('authToken', response.data.token)
-        login() // Call login function from UseAuth
-        navigate('/welcome') // Redirect to /welcome (welcome-page) on successful login
+        login() // Update auth context
+        navigate('/welcome') // Redirect to welcome page
       } else {
-        setError('Invalid credentials') // Display error if input-credentials are incorrect
+        setError('Invalid credentials') // Handle invalid credentials
       }
     } catch (err) {
-      setError('Error occurred while logging in') // Display generic error message
+      setError('Error occurred while logging in') // Handle errors
     }
-
-    /* try-1 */
-    // try {
-    //   const response = await axios.post(
-    //     'https://login.dataconstruct.com.np/login',
-    //     {
-    //       username, // Sending credentials
-    //       password,
-    //     },
-    //     {
-    //       headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
-    //     },
-    //   )
-
-    //   // Check if the response message is 'Login successful'
-    //   if (response.data.message === 'Login successful') {
-    //     // Store the token if needed (e.g., in localStorage or context)
-    //     localStorage.setItem('authToken', response.data.token)
-    //     login() // Call login function from UseAuth
-    //     navigate('/welcome') // Redirect to /welcome (welcome-page) on successful login
-    //   } else {
-    //     setError('Invalid credentials') // Display error if input-credentials are incorrect
-    //   }
-    // } catch (err) {
-    //   setError('Error occurred while logging in') // Display generic error message
-    // }
   }
 
+  // Toggle password visibility
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword)
   }

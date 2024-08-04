@@ -7,6 +7,7 @@
 - [Built With](#built-with)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [ Vite Configuration for CORS Handling](#vite-configuration-for-cors-handling)
 
 ## Introduction:
 
@@ -81,8 +82,9 @@ List any prerequisites for your project:
    npm run dev
    ```
 
-## (IMP)Vite Configuration for CORS Handling
+## Vite Configuration for CORS Handling
 
+**(IMP)**
 The application uses Vite's proxy configuration to handle CORS issues during API requests. This setup allows the frontend to make requests to the backend without encountering CORS errors.(only for development-purpose)
 
 ```ts
@@ -104,3 +106,17 @@ export default defineConfig({
   plugins: [react()],
 })
 ```
+
+### How It Works
+
+The server.proxy configuration in Vite allows you to specify how requests to certain paths should be redirected to a different server. For instance, requests made to /api will be proxied to https://login.dataconstruct.com.np.
+
+#### Configuration Breakdown
+
+**target:** Defines the backend server where the requests will be forwarded. In this case, it is set to https://login.dataconstruct.com.np, the server that will handle the requests.
+
+**changeOrigin:** When set to true, it alters the Origin header of the request to match the target server. This adjustment is often necessary for proper request handling by the server.
+
+**secure:** Set to false to permit requests to servers with self-signed or invalid SSL certificates. This setting is generally used for development purposes and should be applied with caution in a production environment.
+
+**rewrite:** A function that modifies the URL path before it is forwarded to the target server. In this configuration, the function removes the /api prefix from the path. For example, a request to /api/some-endpoint is proxied as /some-endpoint to the target server
