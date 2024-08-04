@@ -7,7 +7,6 @@
 - [Built With](#built-with)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Test](#test)
 
 ## Introduction:
 
@@ -104,15 +103,4 @@ export default defineConfig({
   },
   plugins: [react()],
 })
-```
-
-## Test
-
-To test the login functionality, you can use the following sample credentials:
-
-```json
-{
-  "username": "username",
-  "password": "password"
-}
 ```
