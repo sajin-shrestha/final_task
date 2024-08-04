@@ -31,17 +31,6 @@ const LoginPage: FC = () => {
 
     /* try-2 */
     try {
-      // Sending credentials to the API
-      // const response = await axios.post(
-      //   'https://cors-anywhere.herokuapp.com/https://login.dataconstruct.com.np/login', // Using CORS proxy
-      //   {
-      //     username, // Sending credentials
-      //     password,
-      //   },
-      //   {
-      //     headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
-      //   },
-      // )
       const response = await axios.post(
         '/api/login', // Using CORS proxy
         {
@@ -54,7 +43,8 @@ const LoginPage: FC = () => {
       )
 
       // Check if the response message is 'Login successful'
-      if (response.data.message === 'Login successful') {
+      // if (response.data.message === 'Login successful') {
+      if (response.status === 200) {
         // Store the token if needed (e.g., in localStorage or context)
         localStorage.setItem('authToken', response.data.token)
         login() // Call login function from UseAuth
