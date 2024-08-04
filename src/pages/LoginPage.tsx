@@ -32,8 +32,18 @@ const LoginPage: FC = () => {
     /* try-2 */
     try {
       // Sending credentials to the API
+      // const response = await axios.post(
+      //   'https://cors-anywhere.herokuapp.com/https://login.dataconstruct.com.np/login', // Using CORS proxy
+      //   {
+      //     username, // Sending credentials
+      //     password,
+      //   },
+      //   {
+      //     headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
+      //   },
+      // )
       const response = await axios.post(
-        'https://cors-anywhere.herokuapp.com/https://login.dataconstruct.com.np/login', // Using CORS proxy
+        '/api/login', // Using CORS proxy
         {
           username, // Sending credentials
           password,
