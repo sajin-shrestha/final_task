@@ -107,11 +107,11 @@ export default defineConfig({
 })
 ```
 
-### How It Works
+- ### How It Works
 
 The server.proxy configuration in Vite allows you to specify how requests to certain paths should be redirected to a different server. For instance, requests made to /api will be proxied to https://login.dataconstruct.com.np.
 
-#### Configuration Breakdown
+- ### Configuration Breakdown
 
 **target:** Defines the backend server where the requests will be forwarded. In this case, it is set to https://login.dataconstruct.com.np, the server that will handle the requests.
 
