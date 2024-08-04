@@ -114,10 +114,10 @@ The server.proxy configuration in Vite allows you to specify how requests to cer
 
 - ### Configuration Breakdown
 
-**target:** Defines the backend server where the requests will be forwarded. In this case, it is set to https://login.dataconstruct.com.np, the server that will handle the requests.
+`**target:**` Defines the backend server where the requests will be forwarded. In this case, it is set to https://login.dataconstruct.com.np, the server that will handle the requests.
 
-**changeOrigin:** When set to true, it alters the Origin header of the request to match the target server. This adjustment is often necessary for proper request handling by the server.
+`**changeOrigin:**` When set to true, it alters the Origin header of the request to match the target server. This adjustment is often necessary for proper request handling by the server.
 
-**secure:** Set to false to permit requests to servers with self-signed or invalid SSL certificates. This setting is generally used for development purposes and should be applied with caution in a production environment.
+`**secure:**` Set to false to permit requests to servers with self-signed or invalid SSL certificates. This setting is generally used for development purposes and should be applied with caution in a production environment.
 
-**rewrite:** A function that modifies the URL path before it is forwarded to the target server. In this configuration, the function removes the /api prefix from the path. For example, a request to /api/some-endpoint is proxied as /some-endpoint to the target server
+`**rewrite:**` A function that modifies the URL path before it is forwarded to the target server. In this configuration, the function removes the /api prefix from the path. For example, a request to /api/some-endpoint is proxied as /some-endpoint to the target server
