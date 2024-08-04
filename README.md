@@ -7,12 +7,11 @@
 - [Built With](#built-with)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Test](#test)
 
 ## Introduction:
 
-- This project is a simple React login page built with TypeScript. It validates user credentials against an API endpoint and handles success and error scenarios appropriately. The /welcome page is protected and only accessible after successful login. A logout button is provided on the welcome page to log the user out and redirect them to the login page.
+This project is a simple React login page built with TypeScript. It validates user credentials against an API endpoint and handles success and error scenarios appropriately. The /welcome page is protected and only accessible after successful login. A logout button is provided on the welcome page to log the user out and redirect them to the login page.
 
 ## Project Structre
 
