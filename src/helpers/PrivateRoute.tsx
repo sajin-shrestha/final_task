@@ -1,5 +1,5 @@
 import { FC, ReactElement } from 'react'
-import { Navigate } from 'react-router-dom'
+import UnauthorizedPage from '../pages/UnauthorizedPage' // Import the UnauthorizedPage component
 import { UseAuth } from './AuthContext'
 
 interface PrivateRouteProps {
@@ -9,7 +9,12 @@ interface PrivateRouteProps {
 const PrivateRoute: FC<PrivateRouteProps> = ({ children }) => {
   const { isLoggedIn } = UseAuth()
 
-  return isLoggedIn ? children : <Navigate to="/login" />
+  // Check if the user is logged in
+  if (!isLoggedIn) {
+    return <UnauthorizedPage /> // Redirect to UnauthorizedPage if not logged in
+  }
+
+  return children
 }
 
 export default PrivateRoute

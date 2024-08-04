@@ -50,17 +50,25 @@ const LoginPage: FC = () => {
 
     /* try-1 */
     try {
-      const response = await axios.post('https://login.dataconstruct.com.np/', {
-        Username: username, // Send credentials with capital "Username" and "Password"
-        Password: password,
-      })
+      const response = await axios.post(
+        'https://login.dataconstruct.com.np/login',
+        {
+          username, // Sending credentials
+          password,
+        },
+        {
+          headers: { 'Content-Type': 'application/json' }, // Ensuring correct content type for JSON payload
+        },
+      )
 
-      // Assuming the API response includes a success field or status
-      if (response.data.success) {
+      // Check if the response message is 'Login successful'
+      if (response.data.message === 'Login successful') {
+        // Store the token if needed (e.g., in localStorage or context)
+        localStorage.setItem('authToken', response.data.token)
         login() // Call login function from UseAuth
-        navigate('/welcome') // Redirect to /welcome on successful login
+        navigate('/welcome') // Redirect to /welcome (welcome-page) on successful login
       } else {
-        setError('Invalid credentials') // Display error if credentials are incorrect
+        setError('Invalid credentials') // Display error if input-credentials are incorrect
       }
     } catch (err) {
       setError('Error occurred while logging in') // Display generic error message
