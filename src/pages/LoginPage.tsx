@@ -12,6 +12,7 @@ import {
 import axios from 'axios'
 import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Loading from '../components/loading'
 import { UseAuth } from '../helpers/AuthContext'
 
 const LoginPage: FC = () => {
@@ -20,6 +21,7 @@ const LoginPage: FC = () => {
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false) // State for managing loading
 
   // Hook for navigation
   const navigate = useNavigate()
@@ -35,6 +37,8 @@ const LoginPage: FC = () => {
       setError('Username and Password cannot be empty')
       return
     }
+
+    setLoading(true) // Set loading to true when form is submitted
 
     try {
       // Make POST request to the proxy API endpoint
@@ -75,6 +79,8 @@ const LoginPage: FC = () => {
       } else {
         setError('Error occurred while logging in') // Handle errors without a response
       }
+    } finally {
+      setLoading(false) // Set loading to false after request is complete
     }
   }
 
@@ -152,9 +158,11 @@ const LoginPage: FC = () => {
               '&:hover': {
                 background: 'linear-gradient(to right, #303f9f, #1976d2)',
               },
+              position: 'relative',
             }}
+            disabled={loading} // Disable button when loading
           >
-            Login
+            {loading ? <Loading /> : 'Login'}
           </Button>
         </form>
       </Box>
