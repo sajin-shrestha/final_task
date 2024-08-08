@@ -11,12 +11,14 @@
 
 ## Introduction:
 
-This project is a simple React login page built with TypeScript. It validates user credentials against an API endpoint and handles success and error scenarios appropriately. The /welcome page is protected and only accessible after successful login. A logout button is provided on the welcome page to log the user out and redirect them to the login page.
+This project is a simple React login page built with TypeScript focused on **code simplicity**. It validates user credentials against an API endpoint and handles success and error scenarios appropriately. The /welcome page is protected and only accessible after successful login. A logout button is provided on the welcome page to log the user out and redirect them to the login page.
 
 ## Project Structre
 
 ```bash
   /src
+  |-- /components
+  | |-- loading.tsx
   |-- /helpers
   | |-- AuthContext.tsx
   | |-- PrivateRoute.tsx
@@ -53,6 +55,7 @@ List the technologies and tools that were used to build your project:
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
 - [Material UI](https://mui.com/material-ui/getting-started/) - Material UI is an open-source React component library that implements Google's Material Design.It includes a comprehensive collection of prebuilt components that are ready for use in production right out of the box, and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 - [Vite](https://vitejs.dev/) - A next-generation frontend tooling
+- [Axios](https://axios-http.com/docs/intro) - A promise-based HTTP Client for node.js and the browser.
 
 ## Prerequisites
 
@@ -61,6 +64,7 @@ List any prerequisites for your project:
 - [Node.js](https://nodejs.org/) (version 14.x or later)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Vite](https://vitejs.dev/) (latest version)
+- [Axios](https://axios-http.com/) (latest version)
 
 ## Installation
 
